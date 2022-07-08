@@ -13,8 +13,8 @@ inputs:
     default: 'Debug'
 runs:
   using: 'docker'
-  # image: Dockerfile
-  image: 'docker://ghcr.io/apollo-fire/ccs-build:v0.0.1'
+  image: Dockerfile
+  # image: 'docker://ghcr.io/apollo-fire/ccs-build:v0.0.1'
   args:
     - ${{ inputs.project-path }}
     - ${{ inputs.build-configuration }}
