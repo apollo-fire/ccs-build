@@ -1,4 +1,7 @@
 void main(void)
 {
-    for(;;);
+    for (;;)
+    {
+        continue;
+    }
 }
