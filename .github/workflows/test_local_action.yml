@@ -1,0 +1,19 @@
+---
+name: Test local ccs_build action
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  test_ccs_build:
+    runs-on: ubuntu-latest
+    name: Test CCS Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: CCS Build action step
+        uses: ./
+        with:
+          project-path: 'test/working_ccs_project'
+          build-configuration: Release

@@ -1,6 +1,6 @@
-MIT License
+# The MIT License (MIT)
 
-Copyright (c) 2022 apollo-fire
+Copyright (c) 2022 Grahame White, 2019 Andrew Hills
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

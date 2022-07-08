@@ -1,0 +1,19 @@
+---
+name: Test released ccs-build action
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  test_ccs_build:
+    runs-on: ubuntu-latest
+    name: Test CCS Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: CCS Build action step
+        uses: apollo-fire/ccs-build@v0.0.1
+        with:
+          project-path: 'test/working_ccs_project'
+ 

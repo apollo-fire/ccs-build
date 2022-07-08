@@ -1,0 +1,22 @@
+---
+name: 'Code Composer Studio Project Builder'
+description: 'GitHub action to build a Code Composer Studio Project'
+author: 'Grahame White'
+inputs:
+  project-path:
+    description: 'Path to the project files'
+    required: true
+    default: './'
+  build-configuration:
+    description: 'The build configuration to use when building'
+    required: false
+    default: 'Debug'
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/apollo-fire/ccs-build:v0.0.1'
+  args:
+    - ${{ inputs.project-path }}
+    - ${{ inputs.build-configuration }}
+branding:
+  icon: 'code'
+  colour: 'red'
