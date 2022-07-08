@@ -25,3 +25,5 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Disable cpplint as it conflicts with clang-format
+          VALIDATE_CPP: false
