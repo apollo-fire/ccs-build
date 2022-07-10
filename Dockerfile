@@ -38,7 +38,7 @@ ENV PATH="/opt/ti/ccs/eclipse:${PATH}"
 ENV PATH="/opt/ti/ccs/tools/compiler/ti-cgt-msp430_21.6.0.LTS/bin:${PATH}"
 WORKDIR /opt/ti/ccs/tools/compiler/ti-cgt-msp430_21.6.0.LTS/lib
 RUN ls -la .
-RUN mklib --pattern=rts430x_sc_sd_eabi.lib
+RUN ./mklib --pattern=rts430x_sc_sd_eabi.lib
 
 CMD ["/bin/bash"]
 
