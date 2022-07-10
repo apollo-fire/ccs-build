@@ -37,9 +37,22 @@ CMD ["/bin/bash"]
 # ENV PATH="${PATH}:/opt/ti/ccs/tools/compiler/ti-cgt-msp430_21.6.0.LTS/bin"
 # RUN /opt/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.6.LTS/lib/mklib --pattern=rts430x_sc_sd_eabi.lib
 
-RUN pushd /opt/ti/ccs/tools/compiler/
+RUN echo /opt/ti
+RUN cd /opt/ti
 RUN ls -la
-RUN popd
+RUN echo
+RUN echo /opt/ti/ccs
+RUN cd ccs
+RUN ls -la
+RUN echo
+RUN echo /opt/ti/ccs/tools
+RUN cd tools
+RUN ls -la
+RUN echo
+RUN echo /opt/ti/ccs/tools/compiler
+RUN cd compiler
+RUN ls -la
+RUN echo
 
 # Copy the script used to build a CCS project to the filesystem path `/` of the container
 COPY build_project.sh /build_project.sh
