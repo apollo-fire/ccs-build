@@ -32,11 +32,10 @@ RUN rm /root/Downloads/${INSTALLER_TAR}
 RUN mkdir -p /home/build/workspace && \
     /opt/ti/ccs/eclipse/eclipse -noSplash -data /home/build/workspace -application com.ti.common.core.initialize -rtsc.productDiscoveryPath "/opt/ti/"
 
+# Pre-compile the small code / small data version of the library
+# Saves ~6 mins per build
 ENV PATH="/opt/ti/ccs/eclipse:${PATH}"
 ENV PATH="/opt/ti/ccs/tools/compiler/ti-cgt-msp430_21.6.0.LTS/bin:${PATH}"
-
-# RUN /opt/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.6.LTS/lib/mklib --pattern=rts430x_sc_sd_eabi.lib
-
 WORKDIR /opt/ti/ccs/tools/compiler/ti-cgt-msp430_21.6.0.LTS/lib
 RUN ls -la .
 RUN mklib --pattern=rts430x_sc_sd_eabi.lib
