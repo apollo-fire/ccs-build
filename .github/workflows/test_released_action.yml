@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3.0.2
         
       - name: CCS Build action step
-        uses: apollo-fire/ccs-build@v0.0.2-alpha9
+        uses: apollo-fire/ccs-build@v0.0.2
         with:
           project-path: 'test/working_ccs_project'
  
