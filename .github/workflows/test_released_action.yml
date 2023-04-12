@@ -10,7 +10,7 @@ jobs:
     name: Test CCS Build
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.1
         
       - name: CCS Build action step
         uses: apollo-fire/ccs-build@v0.0.2
