@@ -17,7 +17,10 @@ jobs:
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.3
+        with:
+          # Get all history to be able to identify changed files
+          fetch-depth: 0
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
