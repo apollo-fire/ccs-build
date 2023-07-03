@@ -4,7 +4,12 @@ name: create ccs_build container
 on:
   release:
     types: [published]
+    
   workflow_dispatch:
+
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   docker:
@@ -25,7 +30,7 @@ jobs:
           
       - name: Build and push
         id: docker_build
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.1.1
         with:
           push: true
           tags: >
