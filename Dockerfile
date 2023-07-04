@@ -22,6 +22,7 @@ RUN apt-get install --yes --no-install-recommends apt-utils=1.6.17 \
                                                   wget=1.19.4-1ubuntu2.2 \
                                                   git=1:2.17.1-1ubuntu0.18 \
                                                   bash=4.4.18-2ubuntu1.3
+
 RUN apt-get clean
 RUN mkdir /root/Downloads
 RUN curl -L ${INSTALLER_URL} --output /root/Downloads/${INSTALLER_TAR} --silent && \
@@ -32,7 +33,8 @@ RUN chmod +x /root/Downloads/${INSTALLER_PATH} && \
 RUN rm /root/Downloads/${INSTALLER_PATH}
 RUN rm /root/Downloads/${INSTALLER_TAR}
 RUN mkdir -p /home/build/workspace && \
-    /opt/ti/ccs/eclipse/eclipse -noSplash -data /home/build/workspace -application com.ti.common.core.initialize -rtsc.productDiscoveryPath "/opt/ti/"
+    /opt/ti/ccs/eclipse/eclipse -noSplash -data /home/build/workspace -application com.ti.common.core.initialize -rtsc.productDiscoveryPath "/opt/ti/" && \
+    git config --system --add safe.directory "*"
 
 # Pre-compile the small code / small data version of the library
 # Saves ~6 mins per build
