@@ -14,6 +14,8 @@ concurrency:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - name: Get Release Tag
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> "$GITHUB_ENV"
