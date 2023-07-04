@@ -20,6 +20,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: CCS Build action step
-        uses: apollo-fire/ccs-build@v0.0.2
+        uses: apollo-fire/ccs-build@v0.0.3
         with:
           project-path: 'test/working_ccs_project'

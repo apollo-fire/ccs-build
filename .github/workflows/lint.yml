@@ -3,9 +3,11 @@ name: Lint Project
 
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**'
+    branches:
+      - main
+  
   pull_request:
+    types: [opened, synchronize]
 
 jobs:
   super-lint:
