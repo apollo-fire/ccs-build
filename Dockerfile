@@ -34,7 +34,7 @@ RUN rm /root/Downloads/${INSTALLER_PATH}
 RUN rm /root/Downloads/${INSTALLER_TAR}
 RUN mkdir -p /home/build/workspace && \
     /opt/ti/ccs/eclipse/eclipse -noSplash -data /home/build/workspace -application com.ti.common.core.initialize -rtsc.productDiscoveryPath "/opt/ti/" && \
-    git config --system --add safe.directory /home/build/workspace/*
+    git config --system --add safe.directory *
 
 # Pre-compile the small code / small data version of the library
 # Saves ~6 mins per build
