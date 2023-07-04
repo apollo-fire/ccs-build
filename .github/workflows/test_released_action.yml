@@ -11,9 +11,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
-        
+      
+      - name: 'Login to github container registry'
+        uses: docker/login-action@v2.0.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: CCS Build action step
-        uses: apollo-fire/ccs-build@v0.0.2
+        uses: apollo-fire/ccs-build@v0.0.3
         with:
           project-path: 'test/working_ccs_project'
- 
