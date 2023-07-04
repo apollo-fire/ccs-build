@@ -20,7 +20,7 @@ RUN apt-get install --yes --no-install-recommends apt-utils=1.6.17 \
                                                   curl=7.58.0-2ubuntu3.24 \
                                                   unzip=6.0-21ubuntu1.2 \
                                                   wget=1.19.4-1ubuntu2.2 \
-                                                  git=2.17.1-1ubuntu0.18 \
+                                                  git=1:2.17.1-1ubuntu0.18 \
                                                   bash=4.4.18-2ubuntu1.3
 RUN apt-get clean
 RUN mkdir /root/Downloads
