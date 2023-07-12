@@ -41,7 +41,7 @@ jobs:
           context: .
           push: true
           cache-from: type=gha
-          cache-to: type=local,mode=max,dest=/tmp/.buildx-base-cache
+          cache-to: type=gha,mode=max
           target: install-ccs
           tags: >
             ghcr.io/${{
