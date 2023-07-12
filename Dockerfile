@@ -1,7 +1,4 @@
-FROM ubuntu:18.04
-
-ARG MSP430_CGT_VERSION
-ARG MSP430_CGT_INSTALLER_URL
+FROM ubuntu:18.04 as install-ccs
 
 #################################
 ### Install Required Packages ###
@@ -48,6 +45,9 @@ RUN curl -L ${INSTALLER_URL} --output /root/Downloads/${INSTALLER_TAR} --silent 
     mkdir -p /home/build/workspace
 
 
+FROM install-ccs
+ARG MSP430_CGT_VERSION
+ARG MSP430_CGT_INSTALLER_URL
 
 ############################################
 ### Install MSP430 Code Generation Tools ###
