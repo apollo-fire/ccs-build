@@ -52,7 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-ccs-base
     permissions:
-      packages: read|write
+      packages: write
+      contents: read
     strategy:
       fail-fast: false
       matrix:
