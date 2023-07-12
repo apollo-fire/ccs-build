@@ -15,7 +15,7 @@ jobs:
   build-ccs-base:
     runs-on: ubuntu-latest
     permissions:
-      packages: write
+      packages: read|write      
 
     steps:
       - name: Checkout Code
