@@ -1,6 +1,8 @@
 # ccs_build
 Docker Action that can build a Code Composer Studio project
 
+By default uses version 21.6.0 of the MSP430 code generation tools
+
 ## Example usage
 ```yaml
 - uses: apollo-fire/ccs-build@v0.0.5
