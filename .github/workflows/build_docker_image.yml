@@ -37,16 +37,42 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2.9.0
-        
-      - name: 'Login to github docker registry'
+
+      - name: Get Build Cache Base
+        uses: actions/cache@v2.0.0
+        with:
+          path: /tmp/.buildx-base-cache
+          key: buildx-base-${{ hashFiles('Dockerfile') }}
+          restore-keys: |
+            buildx-base-
+
+      - name: Get Build Cache CGT
+        uses: actions/cache@v2.0.0
+        with:
+          path: /tmp/.buildx-cgt-cache-${{ matrix.cgt-versions.prefix }}
+          key: buildx-base-${{ hashFiles('Dockerfile') }}-${{ matrix.cgt-versions.prefix }}
+          restore-keys: |
+            buildx-cgt-${{ matrix.cgt-versions.prefix }}-
+
+      - name: Login to GitHub Docker Registry
         uses: docker/login-action@v2.2.0
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Build and push
-        id: docker_build
+
+      - name: Build Base Image
+        id: docker_build_base
+        uses: docker/build-push-action@v4.1.1
+        with:
+          context: .
+          push: false
+          cache-from: type=local,src=/tmp/.buildx-base-cache
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-base-cache
+          target: install-ccs
+            
+      - name: Build and Push Images For Specific CGT Versions
+        id: docker_build_cgt_images
         uses: docker/build-push-action@v4.1.1
         with:
           context: .
@@ -55,8 +81,12 @@ jobs:
             ghcr.io/${{
             github.repository_owner 
             }}/ccs-build:${{ matrix.cgt-versions.prefix }}-${{ env.RELEASE_VERSION }}
-          cache-from: type=gha,scope=build-${{ matrix.cgt-versions.prefix }}
-          cache-to: type=gha,mode=max,scope=build-${{ matrix.cgt-versions.prefix }}
+          cache-from: |
+            type=local,src=/tmp/.buildx-base-cache,scope=build-${{ matrix.cgt-versions.prefix }}
+            type=local,src=/tmp/.build-cgt-${{ matrix.cgt-versions.prefix }}-cache,scope=build-${{ matrix.cgt-versions.prefix }}
+          cache-to: |
+            type=local,src=/tmp/.build-cgt-${{ matrix.cgt-versions.prefix }}-cache,mode=max,scope=build-${{ matrix.cgt-versions.prefix }}
+          target: install-specific-cgt
           build-args: |
             MSP430_CGT_VERSION=${{ matrix.cgt-versions.version-number }}
             MSP430_CGT_INSTALLER_URL=${{ matrix.cgt-versions.installer-url }}
