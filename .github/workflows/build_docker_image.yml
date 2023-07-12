@@ -17,7 +17,7 @@ jobs:
     permissions:
       packages: write
     strategy:
-      max-parallel: 1
+      # max-parallel: 1
       fail-fast: false
       matrix:
         cgt-versions:
