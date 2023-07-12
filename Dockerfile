@@ -45,7 +45,7 @@ RUN curl -L ${INSTALLER_URL} --output /root/Downloads/${INSTALLER_TAR} --silent 
     mkdir -p /home/build/workspace
 
 
-FROM ccs-base:v11.0.0 as install-specific-cgt
+FROM FROM ghcr.io/apollo-fire/ccs-base:v11.0.0 as install-specific-cgt
 ARG MSP430_CGT_VERSION
 ARG MSP430_CGT_INSTALLER_URL
 
