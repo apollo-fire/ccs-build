@@ -45,7 +45,7 @@ RUN curl -L ${INSTALLER_URL} --output /root/Downloads/${INSTALLER_TAR} --silent 
     mkdir -p /home/build/workspace
 
 
-FROM install-ccs
+FROM install-ccs as install-specific-cgt
 ARG MSP430_CGT_VERSION
 ARG MSP430_CGT_INSTALLER_URL
 
