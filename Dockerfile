@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as install-ccs
+FROM ubuntu:23.04 as install-ccs
 
 #################################
 ### Install Required Packages ###
