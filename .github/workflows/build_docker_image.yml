@@ -36,7 +36,7 @@ jobs:
 
       - name: Build Base Image
         id: docker_build_base
-        uses: docker/build-push-action@v4.1.1
+        uses: docker/build-push-action@v5.0.0
         with:
           context: .
           push: true
@@ -84,7 +84,7 @@ jobs:
             
       - name: Build and Push Images For Specific CGT Versions
         id: docker_build_cgt_images
-        uses: docker/build-push-action@v4.1.1
+        uses: docker/build-push-action@v5.0.0
         with:
           context: .
           push: true
