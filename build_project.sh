@@ -27,4 +27,4 @@ echo import project into workspace
 /opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application com.ti.ccstudio.apps.projectImport -ccs.location "$1"
 
 echo build project
-/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application com.ti.ccstudio.apps.projectBuild  -ccs.workspace --ccs.configuration "$2"
+/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build $2/$3

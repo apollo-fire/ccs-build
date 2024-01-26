@@ -7,6 +7,9 @@ inputs:
     description: 'Path to the project files'
     required: true
     default: './'
+  project-name:
+    description: 'Name of the CCS project to be built'
+    required: true
   build-configuration:
     description: 'The build configuration to use when building'
     required: false
@@ -16,6 +19,7 @@ runs:
   image: 'docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v0.0.5'
   args:
     - ${{ inputs.project-path }}
+    - ${{ inputs.project-name }}
     - ${{ inputs.build-configuration }}
 branding:
   icon: 'code'
