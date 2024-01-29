@@ -16,4 +16,5 @@ jobs:
         uses: ./
         with:
           project-path: 'test/working_ccs_project'
+          project-name: 'msp430_test_project'
           build-configuration: Release
