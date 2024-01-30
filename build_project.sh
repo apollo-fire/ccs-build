@@ -35,5 +35,6 @@ echo "$output"
 if (echo "$output" | grep -q "Build of configuration $3") then
   exit 0
 else
+  echo error: incorrect build configuration detected
   exit 1
 fi
