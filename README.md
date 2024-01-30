@@ -7,6 +7,8 @@ By default uses version 21.6.0 of the MSP430 code generation tools
 ```yaml
 - uses: apollo-fire/ccs-build@v0.0.5
   with:
+    project-path: path/to/ccs-project/
+    project-name: my-project
     build-configuration: Debug
 ```
 
@@ -14,11 +16,15 @@ By default uses version 21.6.0 of the MSP430 code generation tools
 ```yaml
 - uses: apollo-fire/ccs-build/compiler/<compiler version>@v0.0.5
   with:
+    project-path: path/to/ccs-project/
+    project-name: my-project
     build-configuration: Debug
 
 # Using 21.6.0 as a worked example:
 - uses: apollo-fire/ccs-build/compiler/21.6.0@v0.0.5
   with:
+    project-path: path/to/ccs-project/
+    project-name: my-project
     build-configuration: Debug    
 ```
 
