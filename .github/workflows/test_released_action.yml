@@ -21,7 +21,7 @@ jobs:
 
       - name: CCS Build action step
         # uses: apollo-fire/ccs-build@v0.0.5
-        uses: apollo-fire/ccs-build@release/abc-63-build-server-add-release-artefact 
+        uses: apollo-fire/ccs-build@abc-63-enable-release-firmware-build
         with:
           project-path: 'test/working_ccs_project'
           project-name: 'msp430_test_project'

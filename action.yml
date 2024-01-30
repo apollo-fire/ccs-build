@@ -16,7 +16,7 @@ inputs:
     default: 'Debug'
 runs:
   using: 'docker'
-  image: ghcr.io/apollo-fire/ccs-build:21.6.0-release/abc-63-build-server-add-release-artefact
+  image: ghcr.io/apollo-fire/ccs-build:21.6.0-abc-63-enable-release-firmware-build
   # image: 'docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v0.0.5'
   args:
     - ${{ inputs.project-path }}
