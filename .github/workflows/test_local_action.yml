@@ -30,10 +30,10 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with:
           name: 'Firmware artifact - Release'
-          path: Release/msp430_test_project.ti_txt
+          path: test/working_ccs_project/Release/msp430_test_project.txt
 
       - name: Upload debug firmware artifact
         uses: actions/upload-artifact@v3.1.3
         with:
           name: 'Firmware artifact - Debug'
-          path: Debug/msp430_test_project.ti_txt
+          path: test/working_ccs_project/Debug/msp430_test_project.txt
