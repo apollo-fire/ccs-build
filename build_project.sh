@@ -27,7 +27,9 @@ echo import project into workspace
 /opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application com.ti.ccstudio.apps.projectImport -ccs.location "$1"
 
 echo build project
-output=$(/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build "$2"/"$3")
+#output=$(/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build "$2"/"$3")
+output=$(/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application com.ti.ccstudio.apps.projectBuild  -ccs.workspace --ccs.configuration "$3")
+echo "$output"
 
 # Check build command output to confirm that the correct configuration was built
 if (echo "$output" | grep -q "Build of configuration $3") then
