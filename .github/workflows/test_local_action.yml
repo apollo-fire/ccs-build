@@ -27,15 +27,17 @@ jobs:
           build-configuration: Debug
 
       - name: Upload release firmware artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.0
         with:
           name: 'Firmware artifact - Release'
           path: test/working_ccs_project/Release/msp430_test_project.txt
           if-no-files-found: error
+          compression-level: 6
 
       - name: Upload debug firmware artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.0
         with:
           name: 'Firmware artifact - Debug'
           path: test/working_ccs_project/Debug/msp430_test_project.txt
           if-no-files-found: error
+          compression-level: 6

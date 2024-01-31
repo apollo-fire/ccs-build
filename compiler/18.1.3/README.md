@@ -6,7 +6,7 @@ Docker Action that can build a Code Composer Studio project
 
 ## Example usage
 ```yaml
-- uses: apollo-fire/ccs-build/compiler/18.1.3/@v0.0.5
+- uses: apollo-fire/ccs-build/compiler/18.1.3/@v0.0.6
   with:
     build-configuration: Debug
 ```
