@@ -53,7 +53,7 @@ ARG MSP430_CGT_INSTALLER_URL
 ### Install MSP430 Code Generation Tools ###
 ############################################
 ENV TI_CGT_INSTALLER_URL=https://software-dl.ti.com/codegen/esd/cgt_public_sw/MSP430/${MSP430_CGT_INSTALLER_URL}
-ENV TI_CGT_INSTALLER=ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
+ENV TI_CGT_INSTALLER=ti_cgt_msp430_installer.bin
 
 RUN curl -L ${TI_CGT_INSTALLER_URL} --output /root/Downloads/${TI_CGT_INSTALLER} --silent && \
     chmod +x /root/Downloads/${TI_CGT_INSTALLER} && \

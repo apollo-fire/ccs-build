@@ -16,8 +16,7 @@ inputs:
     default: 'Debug'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/apollo-fire/ccs-build:21.6.0-abc-63-enable-release-firmware-build'
-  # image: 'docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v0.0.5'
+  image: 'docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v0.0.6'
   args:
     - ${{ inputs.project-path }}
     - ${{ inputs.project-name }}
