@@ -19,14 +19,14 @@ jobs:
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.1
         with:
           # Get all history to be able to identify changed files
           fetch-depth: 0
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
-        uses: super-linter/super-linter/slim@v5.1.1
+        uses: super-linter/super-linter/slim@v5.7.2
         env:
           DEFAULT_BRANCH: main
           # only log identified linting issues
