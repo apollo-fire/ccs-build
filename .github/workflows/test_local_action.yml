@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.1
 
-      - name: CCS Build action step  - Release
+      - name: CCS Build action step - Release
         uses: ./
         with:
           project-path: 'test/working_ccs_project'
