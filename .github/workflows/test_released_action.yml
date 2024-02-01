@@ -20,14 +20,14 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: CCS Build action step - Release
-        uses: apollo-fire/ccs-build@v0.0.6
+        uses: apollo-fire/ccs-build@v1.0.0
         with:
           project-path: 'test/working_ccs_project'
           project-name: 'msp430_test_project'
           build-configuration: Release
 
       - name: CCS Build action step - Debug
-        uses: apollo-fire/ccs-build@v0.0.6
+        uses: apollo-fire/ccs-build@v1.0.0
         with:
           project-path: 'test/working_ccs_project'
           project-name: 'msp430_test_project'
