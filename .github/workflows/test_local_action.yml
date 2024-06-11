@@ -10,10 +10,34 @@ jobs:
     name: Test CCS Build
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4.1.1
 
-      - name: CCS Build action step
+      - name: CCS Build action step - Release
         uses: ./
         with:
           project-path: 'test/working_ccs_project'
+          project-name: 'msp430_test_project'
           build-configuration: Release
+
+      - name: CCS Build action step - Debug
+        uses: ./
+        with:
+          project-path: 'test/working_ccs_project'
+          project-name: 'msp430_test_project'
+          build-configuration: Debug
+
+      - name: Upload release firmware artifact
+        uses: actions/upload-artifact@v4.3.0
+        with:
+          name: 'Firmware artifact - Release'
+          path: test/working_ccs_project/Release/msp430_test_project.txt
+          if-no-files-found: error
+          compression-level: 9
+
+      - name: Upload debug firmware artifact
+        uses: actions/upload-artifact@v4.3.0
+        with:
+          name: 'Firmware artifact - Debug'
+          path: test/working_ccs_project/Debug/msp430_test_project.txt
+          if-no-files-found: error
+          compression-level: 9
