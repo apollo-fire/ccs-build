@@ -81,6 +81,7 @@ jobs:
           context: .
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          target: install-specific-cgt
           build-args: |
             MSP430_CGT_VERSION=${{ matrix.cgt-versions.version-number }}
             MSP430_CGT_INSTALLER_URL=${{ matrix.cgt-versions.installer-url }}
