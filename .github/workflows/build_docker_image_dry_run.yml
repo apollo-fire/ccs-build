@@ -1,4 +1,7 @@
 ---
+# jscpd:ignore-start
+# #105 created to address duplication across workflows
+
 name: create ccs_build container - dry run
 
 on:
@@ -88,3 +91,5 @@ jobs:
           build-args: |
             MSP430_CGT_VERSION=${{ matrix.cgt-versions.version-number }}
             MSP430_CGT_INSTALLER_URL=${{ matrix.cgt-versions.installer-url }}
+            
+# jscpd:ignore-end
