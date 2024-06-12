@@ -94,3 +94,6 @@ COPY build_project.sh /build_project.sh
 
 # Code file to execute when the docker container starts up (`build_project.sh`)
 ENTRYPOINT ["/build_project.sh"]
+
+# The health check should be improved in the future once we identify characteristics to test
+HEALTHCHECK CMD exit 0
