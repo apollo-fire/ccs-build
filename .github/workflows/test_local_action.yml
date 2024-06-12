@@ -3,6 +3,8 @@ name: Test local ccs_build action
 
 on:
   workflow_dispatch:
+
+permissions: read-all
   
 jobs:
   test_ccs_build:
