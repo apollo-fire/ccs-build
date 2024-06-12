@@ -11,6 +11,8 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+permissions: read-all
+
 jobs:
   super-lint:
     # Name the Job
