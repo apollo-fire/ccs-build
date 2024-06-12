@@ -1,4 +1,8 @@
 ---
+
+# jscpd:ignore-start
+# #105 created to address duplication across workflows
+
 name: Test local ccs_build action
 
 on:
@@ -43,3 +47,5 @@ jobs:
           path: test/working_ccs_project/Debug/msp430_test_project.txt
           if-no-files-found: error
           compression-level: 9
+
+# jscpd:ignore-end
