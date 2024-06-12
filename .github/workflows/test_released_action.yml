@@ -3,7 +3,9 @@ name: Test released ccs-build action
 
 on:
   workflow_dispatch:
-  
+
+permissions: read-all
+
 jobs:
   test_ccs_build:
     runs-on: ubuntu-latest
