@@ -1,4 +1,6 @@
 ---
+# jscpd:ignore-start
+# ignore the action metadata file as it is a requirement that it follows a set structure
 name: 'Code Composer Studio Project Builder - CGT v21.6.0'
 description: 'GitHub action to build a Code Composer Studio Project'
 author: 'Grahame White'
@@ -24,3 +26,5 @@ runs:
 branding:
   icon: 'code'
   colour: 'red'
+
+# jscpd:ignore-end

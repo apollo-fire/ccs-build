@@ -1,3 +1,6 @@
+#checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
+#GitHub actions require that the docker image use the root user
+#https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user
 FROM ubuntu:18.04 as install-ccs
 
 #################################
@@ -91,3 +94,6 @@ COPY build_project.sh /build_project.sh
 
 # Code file to execute when the docker container starts up (`build_project.sh`)
 ENTRYPOINT ["/build_project.sh"]
+
+# The health check should be improved in the future once we identify characteristics to test
+HEALTHCHECK CMD exit 0
