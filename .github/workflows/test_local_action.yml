@@ -1,5 +1,4 @@
 ---
-
 # jscpd:ignore-start
 # #105 created to address duplication across workflows
 
@@ -9,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions: read-all
-  
+
 jobs:
   test_ccs_build:
     runs-on: ubuntu-latest
@@ -21,21 +20,21 @@ jobs:
       - name: CCS Build action step - Release
         uses: ./
         with:
-          project-path: 'test/working_ccs_project'
-          project-name: 'msp430_test_project'
+          project-path: "test/working_ccs_project"
+          project-name: "msp430_test_project"
           build-configuration: Release
 
       - name: CCS Build action step - Debug
         uses: ./
         with:
-          project-path: 'test/working_ccs_project'
-          project-name: 'msp430_test_project'
+          project-path: "test/working_ccs_project"
+          project-name: "msp430_test_project"
           build-configuration: Debug
 
       - name: Upload release firmware artifact
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: 'Firmware artifact - Release'
+          name: "Firmware artifact - Release"
           path: test/working_ccs_project/Release/msp430_test_project.txt
           if-no-files-found: error
           compression-level: 9
@@ -43,9 +42,8 @@ jobs:
       - name: Upload debug firmware artifact
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: 'Firmware artifact - Debug'
+          name: "Firmware artifact - Debug"
           path: test/working_ccs_project/Debug/msp430_test_project.txt
           if-no-files-found: error
           compression-level: 9
-
 # jscpd:ignore-end
