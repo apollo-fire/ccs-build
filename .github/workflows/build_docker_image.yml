@@ -4,10 +4,10 @@ name: create ccs_build container
 on:
   release:
     types: [published]
-    
+
   workflow_dispatch:
 
-concurrency: 
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
@@ -66,7 +66,7 @@ jobs:
           - prefix: 21.6.0
             version-number: 21.6.0.LTS
             installer-url: 21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
-            
+
     steps:
       - name: Get Release Tag
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> "$GITHUB_ENV"
@@ -83,7 +83,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-            
+
       - name: Build and Push Images For Specific CGT Versions
         id: docker_build_cgt_images
         uses: docker/build-push-action@v5.4.0
