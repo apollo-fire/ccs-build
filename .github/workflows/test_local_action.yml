@@ -15,7 +15,7 @@ jobs:
     name: Test CCS Build
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.2.2
 
       - name: CCS Build action step - Release
         uses: ./
