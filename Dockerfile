@@ -1,7 +1,7 @@
 #checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
 #GitHub actions require that the docker image use the root user
 #https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user
-FROM ubuntu:18.04 as install-ccs
+FROM ubuntu:24.04 as install-ccs
 
 #################################
 ### Install Required Packages ###
