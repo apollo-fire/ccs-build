@@ -42,7 +42,7 @@ jobs:
 
       - name: Build Base Image
         id: docker_build_base
-        uses: docker/build-push-action@v6.17.0
+        uses: docker/build-push-action@v6.18.0
         with:
           context: .
           cache-from: type=gha
@@ -82,7 +82,7 @@ jobs:
 
       - name: Build and Push Images For Specific CGT Versions
         id: docker_build_cgt_images
-        uses: docker/build-push-action@v6.17.0
+        uses: docker/build-push-action@v6.18.0
         with:
           context: .
           cache-from: type=gha
