@@ -32,7 +32,7 @@ jobs:
           build-configuration: Debug
 
       - name: Upload release firmware artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v5.0.0
         with:
           name: "Firmware artifact - Release"
           path: test/working_ccs_project/Release/msp430_test_project.txt
@@ -40,7 +40,7 @@ jobs:
           compression-level: 9
 
       - name: Upload debug firmware artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@v5.0.0
         with:
           name: "Firmware artifact - Debug"
           path: test/working_ccs_project/Debug/msp430_test_project.txt
