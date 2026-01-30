@@ -18,16 +18,15 @@ concurrency:
 permissions: {}
 
 jobs:
-    permissions:
-      contents: read
-      packages: read
-      statuses: write # Allows more detailed statuses to be provided for PR checks
-      
   super-lint:
     # Name the Job
     name: Lint code base
     # Set the type of machine to run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      statuses: write # Allows more detailed statuses to be provided for PR checks
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
