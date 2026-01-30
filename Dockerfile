@@ -1,7 +1,8 @@
 #checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
 #GitHub actions require that the docker image use the root user
 #https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user
-FROM ubuntu:18.04 as install-ccs
+
+FROM ubuntu:24.04 AS install-ccs
 
 #################################
 ### Install Required Packages ###
@@ -10,18 +11,17 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
     sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
     apt-get update && \
     apt-get --yes upgrade && \
-    apt-get install --yes --no-install-recommends apt-utils=1.6.17 \
-                                                  autoconf=2.69-11 \
-                                                  bash=4.4.18-2ubuntu1.3 \
-                                                  build-essential=12.4ubuntu1 \
-                                                  curl=7.58.0-2ubuntu3.24 \
-                                                  git=1:2.17.1-1ubuntu0.18 \
-                                                  libc6-i386=2.27-3ubuntu1.6 \
-                                                  libgconf-2-4=3.2.6-4ubuntu1 \
-                                                  libtool=2.4.6-2 \
-                                                  software-properties-common=0.96.24.32.22 \
-                                                  unzip=6.0-21ubuntu1.2 \
-                                                  wget=1.19.4-1ubuntu2.2 && \
+    apt-get install --yes --no-install-recommends apt-utils=2.8.3 \
+                                                  autoconf=2.71-3 \
+                                                  bash=5.2.21-2ubuntu4 \
+                                                  build-essential=12.10ubuntu1 \
+                                                  curl=8.5.0-2ubuntu10.6 \
+                                                  git=1:2.43.0-1ubuntu7.3 \
+                                                  libc6-i386=2.39-0ubuntu8.6 \
+                                                  libtool=2.4.7-7build1 \
+                                                  software-properties-common=0.99.49.3 \
+                                                  unzip=6.0-28ubuntu4.1 \
+                                                  wget=1.21.4-1ubuntu4.1 && \
     rm -rf /var/lib/apt/lists/*
 
 
@@ -97,3 +97,11 @@ ENTRYPOINT ["/build_project.sh"]
 
 # The health check should be improved in the future once we identify characteristics to test
 HEALTHCHECK CMD exit 0
+
+
+# See the comment at the top of the file as to why these suppressions are necessary.
+#checkov:skip=CKV_DOCKER_8: "GitHub actions require that the docker image use the root user"
+# hadolint global ignore=DL3002
+# Trivy requires suppressions to be linked to an actual resource, in this case the following explicit `USER` command.
+#trivy:ignore:AVD-DS-0002
+USER root
