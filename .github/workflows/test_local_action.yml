@@ -15,7 +15,9 @@ jobs:
     name: Test CCS Build
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
 
       - name: CCS Build action step - Release
         uses: ./
@@ -32,7 +34,7 @@ jobs:
           build-configuration: Debug
 
       - name: Upload release firmware artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: "Firmware artifact - Release"
           path: test/working_ccs_project/Release/msp430_test_project.txt
@@ -40,7 +42,7 @@ jobs:
           compression-level: 9
 
       - name: Upload debug firmware artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: "Firmware artifact - Debug"
           path: test/working_ccs_project/Debug/msp430_test_project.txt
