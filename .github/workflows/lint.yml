@@ -11,7 +11,11 @@ on:
   pull_request:
     types: [opened, synchronize]
 
-permissions: read-all
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
 
 jobs:
   super-lint:
@@ -19,24 +23,35 @@ jobs:
     name: Lint code base
     # Set the type of machine to run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      statuses: write # Allows more detailed statuses to be provided for PR checks
 
     steps:
       # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
           # Get all history to be able to identify changed files
           fetch-depth: 0
+          persist-credentials: false
 
       # Runs the Super-Linter action
       - name: Run Super-Linter
-        uses: super-linter/super-linter/slim@v7.4.0
+        uses: super-linter/super-linter/slim@2bdd90ed3262e023ac84bf8fe35dc480721fc1f2 # v8.2.1
         env:
-          DEFAULT_BRANCH: main
           # only log identified linting issues
           LOG_LEVEL: NOTICE
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Only lint new and modified files
           VALIDATE_ALL_CODEBASE: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Disable cpplint as it conflicts with clang-format
           VALIDATE_CPP: false
+          VALIDATE_GHERKIN: false
+          VALIDATE_JSCPD: false
+          # Disable pyink as it conflicts with black
+          VALIDATE_PYTHON_PYINK: false
+          # Disable Biome as it conflicts with Prettier
+          VALIDATE_BIOME_FORMAT: false
