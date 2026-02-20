@@ -18,7 +18,7 @@ inputs:
     default: 'Debug'
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v1.0.0'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.project-path }}
     - ${{ inputs.project-name }}

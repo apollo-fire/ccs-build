@@ -49,8 +49,8 @@ RUN curl -L ${INSTALLER_URL} --output /root/Downloads/${INSTALLER_TAR} --silent 
 
 
 FROM ghcr.io/apollo-fire/ccs-base:v11.0.0 AS install-specific-cgt
-ARG MSP430_CGT_VERSION
-ARG MSP430_CGT_INSTALLER_URL
+ARG MSP430_CGT_VERSION=21.6.0.LTS
+ARG MSP430_CGT_INSTALLER_URL=21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
 
 ############################################
 ### Install MSP430 Code Generation Tools ###
