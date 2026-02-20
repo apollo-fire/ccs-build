@@ -31,13 +31,28 @@ echo import project into workspace
 /opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application com.ti.ccstudio.apps.projectImport -ccs.location "$1"
 
 echo build project
-output=$(/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build "$2"/"$3")
+set +e
+output=$(/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build "$2"/"$3" 2>&1)
+build_exit_code=$?
+set -e
 echo "$output"
 
 # Check build command output to confirm that the correct configuration was built
-if (echo "$output" | grep -q "Build of configuration $3") then
-  exit 0
-else
+if ! (echo "$output" | grep -q "Build of configuration $3"); then
   echo error: incorrect build configuration detected
   exit 1
 fi
+
+# Check if the build command itself failed
+if [ $build_exit_code -ne 0 ]; then
+  echo error: build command failed with exit code $build_exit_code
+  exit 1
+fi
+
+# Check for build errors in the output
+if (echo "$output" | grep -qE "Build Failed|Error:|[0-9]+ errors"); then
+  echo error: build completed with errors
+  exit 1
+fi
+
+exit 0
