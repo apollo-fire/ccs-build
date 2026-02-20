@@ -48,4 +48,28 @@ jobs:
           path: test/working_ccs_project/Debug/msp430_test_project.txt
           if-no-files-found: error
           compression-level: 9
+
+  test_ccs_build_failure:
+    runs-on: ubuntu-latest
+    name: Test CCS Build Failure
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: CCS Build action step - should fail
+        id: build_step
+        continue-on-error: true
+        uses: ./
+        with:
+          project-path: "test/failing_ccs_project"
+          project-name: "msp430_test_project"
+          build-configuration: Debug
+
+      - name: Verify build failed
+        if: steps.build_step.outcome != 'failure'
+        run: |
+          echo "Error: Build was expected to fail but it succeeded"
+          exit 1
 # jscpd:ignore-end
