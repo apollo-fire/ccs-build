@@ -22,19 +22,33 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: CCS Build action step - Release
-        uses: ./
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+
+      - name: Build local Docker image
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
         with:
-          project-path: "test/working_ccs_project"
-          project-name: "msp430_test_project"
-          build-configuration: Release
+          context: .
+          load: true
+          tags: ccs-build:test
+          target: install-specific-cgt
+          build-args: |
+            MSP430_CGT_VERSION=21.6.0.LTS
+            MSP430_CGT_INSTALLER_URL=21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
+
+      - name: CCS Build action step - Release
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/test/working_ccs_project:/project" \
+            ccs-build:test \
+            /project msp430_test_project Release
 
       - name: CCS Build action step - Debug
-        uses: ./
-        with:
-          project-path: "test/working_ccs_project"
-          project-name: "msp430_test_project"
-          build-configuration: Debug
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/test/working_ccs_project:/project" \
+            ccs-build:test \
+            /project msp430_test_project Debug
 
       - name: Upload release firmware artifact
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
@@ -61,14 +75,28 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+
+      - name: Build local Docker image
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0
+        with:
+          context: .
+          load: true
+          tags: ccs-build:test
+          target: install-specific-cgt
+          build-args: |
+            MSP430_CGT_VERSION=21.6.0.LTS
+            MSP430_CGT_INSTALLER_URL=21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
+
       - name: CCS Build action step - should fail
         id: build_step
         continue-on-error: true
-        uses: ./
-        with:
-          project-path: "test/failing_ccs_project"
-          project-name: "msp430_test_project"
-          build-configuration: Debug
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/test/failing_ccs_project:/project" \
+            ccs-build:test \
+            /project msp430_test_project Debug
 
       - name: Verify build failed
         if: steps.build_step.outcome != 'failure'
