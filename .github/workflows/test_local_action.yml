@@ -99,7 +99,7 @@ jobs:
             /project msp430_test_project Debug
 
       - name: Verify build failed
-        if: steps.build_step.outcome != 'failure'
+        if: steps.build_step.outcome == 'success'
         run: |
           echo "Error: Build was expected to fail but it succeeded"
           exit 1
