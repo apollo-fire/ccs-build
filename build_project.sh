@@ -50,7 +50,7 @@ if [ $build_exit_code -ne 0 ]; then
 fi
 
 # Check for build errors in the output
-if (echo "$output" | grep -qE "Build Failed|Error:|[0-9]+ errors"); then
+if (echo "$output" | grep -qE "Build Failed|Error:|[1-9][0-9]* errors"); then
   echo error: build completed with errors
   exit 1
 fi
