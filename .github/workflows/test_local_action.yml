@@ -5,6 +5,9 @@
 name: Test local ccs_build action
 
 on:
+  pull_request:
+    types: [opened, synchronize]
+
   workflow_dispatch:
 
 permissions: read-all
