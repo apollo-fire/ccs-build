@@ -10,7 +10,7 @@ on:
 
   workflow_dispatch:
 
-permissions: read-all
+permissions: {}
 
 jobs:
   test_ccs_build:
@@ -103,4 +103,5 @@ jobs:
         run: |
           echo "Error: Build was expected to fail but it succeeded"
           exit 1
+
 # jscpd:ignore-end
