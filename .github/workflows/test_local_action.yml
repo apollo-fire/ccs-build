@@ -38,14 +38,14 @@ jobs:
             MSP430_CGT_VERSION=21.6.0.LTS
             MSP430_CGT_INSTALLER_URL=21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
 
-      - name: CCS Build action step - Release
+      - name: Run CCS build in Docker - Release
         run: |
           docker run --rm \
             -v "${{ github.workspace }}/test/working_ccs_project:/project" \
             ccs-build:test \
             /project msp430_test_project Release
 
-      - name: CCS Build action step - Debug
+      - name: Run CCS build in Docker - Debug
         run: |
           docker run --rm \
             -v "${{ github.workspace }}/test/working_ccs_project:/project" \
