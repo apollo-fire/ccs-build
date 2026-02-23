@@ -34,15 +34,15 @@ build_exit_code=$?
 set -e
 echo "$output"
 
-# Check build command output to confirm that the correct configuration was built
-if ! (echo "$output" | grep -q "Build of configuration $3"); then
-	echo error: incorrect build configuration detected
-	exit 1
-fi
-
 # Check if the build command itself failed
 if [ $build_exit_code -ne 0 ]; then
 	echo error: build command failed with exit code $build_exit_code
+	exit 1
+fi
+
+# Check build command output to confirm that the correct configuration was built
+if ! (echo "$output" | grep -q "Build of configuration $3"); then
+	echo error: incorrect build configuration detected
 	exit 1
 fi
 

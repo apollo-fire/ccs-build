@@ -10,7 +10,8 @@ on:
 
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   test_ccs_build:
