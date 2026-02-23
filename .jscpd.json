@@ -1,5 +1,3 @@
 {
-  "ignore": [
-    "test/failing_ccs_project/**"
-  ]
+  "ignore": ["test/failing_ccs_project/**"]
 }

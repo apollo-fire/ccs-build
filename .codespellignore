@@ -1,1 +1,3 @@
 test/failing_ccs_project/
+**/.cproject
+**/lnk_msp430fr2033.cmd
