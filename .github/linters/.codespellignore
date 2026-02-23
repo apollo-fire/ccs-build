@@ -1,3 +1,5 @@
 test/failing_ccs_project/
-**/.cproject
-**/lnk_msp430fr2033.cmd
+test/working_ccs_project/.cproject
+test/working_ccs_project/lnk_msp430fr2033.cmd
+test/failing_ccs_project/.cproject
+test/failing_ccs_project/lnk_msp430fr2033.cmd
