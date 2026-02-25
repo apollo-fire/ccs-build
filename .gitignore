@@ -1,6 +1,9 @@
 # Prerequisites
 *.d
 
+# CodeQL
+_codeql_detected_source_root
+
 # Object files
 *.o
 *.ko
