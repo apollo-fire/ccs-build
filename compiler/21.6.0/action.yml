@@ -16,11 +16,11 @@ inputs:
     default: "Debug"
 runs:
   using: "docker"
-  image: "docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v1.0.0"
+  image: "docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v2.0.0"
   args:
     - ${{ inputs.project-path }}
     - ${{ inputs.project-name }}
     - ${{ inputs.build-configuration }}
 branding:
   icon: "code"
-  colour: "red"
+  color: "red"
