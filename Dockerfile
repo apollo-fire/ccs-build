@@ -15,11 +15,11 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
                                                   autoconf=2.71-3 \
                                                   bash=5.2.21-2ubuntu4 \
                                                   build-essential=12.10ubuntu1 \
-                                                  curl=8.5.0-2ubuntu10.6 \
+                                                  curl=8.5.0-2ubuntu10.7 \
                                                   git=1:2.43.0-1ubuntu7.3 \
                                                   libc6-i386=2.39-0ubuntu8.7 \
                                                   libtool=2.4.7-7build1 \
-                                                  software-properties-common=0.99.49.3 \
+                                                  software-properties-common=0.99.49.4 \
                                                   unzip=6.0-28ubuntu4.1 \
                                                   wget=1.21.4-1ubuntu4.1 && \
     rm -rf /var/lib/apt/lists/*
