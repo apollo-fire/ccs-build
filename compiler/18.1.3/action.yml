@@ -23,4 +23,4 @@ runs:
     - ${{ inputs.build-configuration }}
 branding:
   icon: 'code'
-  colour: 'red'
+  color: 'red'
