@@ -4,7 +4,7 @@ Docker Action that can build a Code Composer Studio project
 
 ## Available MSP Compiler
 
-* 21.6.0.LTS
+- 21.6.0.LTS
 
 ## Example usage
 
