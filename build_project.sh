@@ -28,10 +28,18 @@ echo import project into workspace
 /opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application com.ti.ccstudio.apps.projectImport -ccs.location "$1"
 
 echo build project
+# Save current errexit (-e) state, then disable it for the headless build
+case $- in
+	*e*) errexit_was_set=true ;;
+	*) errexit_was_set=false ;;
+esac
 set +e
 output=$(/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build "$2"/"$3" 2>&1)
 build_exit_code=$?
-set -e
+# Restore original errexit (-e) state
+if [ "$errexit_was_set" = true ]; then
+	set -e
+fi
 echo "$output"
 
 # Check if the build command itself failed
