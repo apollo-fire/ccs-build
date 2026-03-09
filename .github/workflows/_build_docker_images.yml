@@ -1,0 +1,82 @@
+---
+name: Build Docker images (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      push:
+        description: Whether to push images to the registry
+        type: boolean
+        default: false
+
+permissions: {}
+
+jobs:
+  build-ccs-base:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+
+    steps:
+      - name: Set up Docker registry access
+        uses: ./.github/actions/setup-docker-registry
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Release Tag
+        if: ${{ inputs.push }}
+        run: echo "RELEASE_VERSION=v11.0.0" >> "$GITHUB_ENV"
+
+      - name: Build Base Image
+        id: docker_build_base
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
+        with:
+          context: .
+          push: ${{ inputs.push }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          target: install-ccs
+          tags: >
+            ${{ inputs.push && format('ghcr.io/{0}/ccs-base:{1}', github.repository_owner, env.RELEASE_VERSION) || 'ccs-base:local' }}
+
+  build-cgt-images:
+    runs-on: ubuntu-latest
+    needs: build-ccs-base
+    permissions:
+      packages: write
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        cgt-versions:
+          - prefix: 18.1.3
+            version-number: 18.1.3.LTS
+            installer-url: 18.1.3.LTS/ti_cgt_msp430_18.1.3.LTS_linux_installer_x86.bin
+          - prefix: 21.6.0
+            version-number: 21.6.0.LTS
+            installer-url: 21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
+
+    steps:
+      - name: Set up Docker registry access
+        uses: ./.github/actions/setup-docker-registry
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Release Tag
+        if: ${{ inputs.push }}
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> "$GITHUB_ENV"
+
+      - name: Build and Push Images For Specific CGT Versions
+        id: docker_build_cgt_images
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
+        with:
+          context: .
+          push: ${{ inputs.push }}
+          tags: >
+            ${{ inputs.push && format('ghcr.io/{0}/ccs-build:{1}-{2}', github.repository_owner, matrix.cgt-versions.prefix, env.RELEASE_VERSION) || format('ccs-build:{0}-local', matrix.cgt-versions.prefix) }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          target: install-specific-cgt
+          build-args: |
+            MSP430_CGT_VERSION=${{ matrix.cgt-versions.version-number }}
+            MSP430_CGT_INSTALLER_URL=${{ matrix.cgt-versions.installer-url }}

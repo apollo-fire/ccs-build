@@ -1,0 +1,22 @@
+---
+name: Upload firmware artifacts
+description: Uploads release and debug firmware build artifacts
+
+runs:
+  using: composite
+  steps:
+    - name: Upload release firmware artifact
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      with:
+        name: "Firmware artifact - Release"
+        path: test/working_ccs_project/Release/msp430_test_project.txt
+        if-no-files-found: error
+        compression-level: 9
+
+    - name: Upload debug firmware artifact
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      with:
+        name: "Firmware artifact - Debug"
+        path: test/working_ccs_project/Debug/msp430_test_project.txt
+        if-no-files-found: error
+        compression-level: 9
