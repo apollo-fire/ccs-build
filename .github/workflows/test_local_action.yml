@@ -19,6 +19,7 @@ jobs:
     name: Test CCS Build
     permissions:
       contents: read
+      actions: write
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -35,6 +36,8 @@ jobs:
           load: true
           tags: ccs-build:test
           target: install-specific-cgt
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           build-args: |
             MSP430_CGT_VERSION=21.6.0.LTS
             MSP430_CGT_INSTALLER_URL=21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
@@ -74,6 +77,7 @@ jobs:
     name: Test CCS Build Failure
     permissions:
       contents: read
+      actions: write
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -90,6 +94,8 @@ jobs:
           load: true
           tags: ccs-build:test
           target: install-specific-cgt
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           build-args: |
             MSP430_CGT_VERSION=21.6.0.LTS
             MSP430_CGT_INSTALLER_URL=21.6.0.LTS/ti_cgt_msp430_21.6.0.LTS_linux-x64_installer.bin
