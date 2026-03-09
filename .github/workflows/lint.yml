@@ -55,3 +55,5 @@ jobs:
           VALIDATE_PYTHON_PYINK: false
           # Disable Biome as it conflicts with Prettier
           VALIDATE_BIOME_FORMAT: false
+          # Disable commitlint as that is handled separately
+          VALIDATE_GIT_COMMITLINT: false
