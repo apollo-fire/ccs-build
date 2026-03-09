@@ -1,0 +1,35 @@
+---
+name: CommitLint
+on:
+  merge_group:
+  pull_request:
+permissions: {}
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup node
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+
+      - name: Install commitlint
+        run: npm install -D @commitlint/cli @commitlint/config-conventional
+      - name: Print versions
+        run: |
+          git --version
+          node --version
+          npm --version
+          npx commitlint --version
+
+      - name: Validate current commit (last commit) with commitlint
+        if: github.event_name == 'merge_group'
+        run: npx commitlint --last --verbose
