@@ -21,4 +21,5 @@ jobs:
     uses: ./.github/workflows/_build_docker_images.yml
     with:
       push: true
-    secrets: inherit
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
