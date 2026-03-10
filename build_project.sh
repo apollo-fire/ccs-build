@@ -39,6 +39,8 @@ build_exit_code=$?
 # Restore original errexit (-e) state
 if [ "$errexit_was_set" = true ]; then
 	set -e
+else
+	set +e
 fi
 echo "$output"
 
