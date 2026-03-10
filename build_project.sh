@@ -30,8 +30,8 @@ echo import project into workspace
 echo build project
 # Save current errexit (-e) state, then disable it for the headless build
 case $- in
-	*e*) errexit_was_set=true ;;
-	*) errexit_was_set=false ;;
+*e*) errexit_was_set=true ;;
+*) errexit_was_set=false ;;
 esac
 set +e
 output=$(/opt/ti/ccs/eclipse/eclipse -noSplash -data "/home/build/workspace" -application org.eclipse.cdt.managedbuilder.core.headlessbuild -build "$2"/"$3" 2>&1)
