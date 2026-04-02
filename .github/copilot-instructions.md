@@ -26,3 +26,4 @@ update the pinned `apt-get install` versions using the following procedure:
 4. Re-add the version pins in the `Dockerfile` using the versions reported by the
    command above.
 5. Rebuild the image with the new pins to confirm the build succeeds.
+
