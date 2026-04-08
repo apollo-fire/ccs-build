@@ -1,4 +1,4 @@
-name: Pull Request Title Linting
+name: Commitlint
 
 on:
   merge_group:
