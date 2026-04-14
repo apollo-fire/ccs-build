@@ -1,17 +1,17 @@
----
 name: CommitLint
+
 on:
   merge_group:
   pull_request:
+    types: [opened, synchronize, reopened, edited]
+
 permissions: {}
 
 jobs:
   commitlint:
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
-
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -33,3 +33,9 @@ jobs:
       - name: Validate current commit (last commit) with commitlint
         if: github.event_name == 'merge_group'
         run: npx commitlint --last --verbose
+
+      - name: Validate PR title with commitlint
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$PR_TITLE" | npx commitlint --verbose
