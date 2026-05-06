@@ -2,26 +2,32 @@
 #GitHub actions require that the docker image use the root user
 #https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user
 
-FROM ubuntu:24.04 AS install-ccs
+FROM ubuntu:26.04 AS install-ccs
 
 #################################
 ### Install Required Packages ###
 #################################
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
-    sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+    sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list.d/ubuntu.sources && \
+    dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get --yes upgrade && \
-    apt-get install --yes --no-install-recommends apt-utils=2.8.3 \
-                                                  autoconf=2.71-3 \
-                                                  bash=5.2.21-2ubuntu4 \
-                                                  build-essential=12.10ubuntu1 \
-                                                  curl=8.5.0-2ubuntu10.9 \
-                                                  git=1:2.43.0-1ubuntu7.3 \
-                                                  libc6-i386=2.39-0ubuntu8.7 \
-                                                  libtool=2.4.7-7build1 \
-                                                  software-properties-common=0.99.49.4 \
-                                                  unzip=6.0-28ubuntu4.1 \
-                                                  wget=1.21.4-1ubuntu4.1 && \
+    apt-get install --yes --no-install-recommends apt-utils=3.2.0 \
+                                                  autoconf=2.72-3.1ubuntu2 \
+                                                  bash=5.3-2ubuntu1 \
+                                                  build-essential=12.12ubuntu2 \
+                                                  curl=8.18.0-1ubuntu2.1 \
+                                                  git=1:2.53.0-1ubuntu1 \
+                                                  lib32gcc-s1=16-20260322-1ubuntu1 \
+                                                  lib32ncurses6=6.6+20251231-1 \
+                                                  lib32stdc++6=16-20260322-1ubuntu1 \
+                                                  lib32tinfo6=6.6+20251231-1 \
+                                                  lib32z1=1:1.3.dfsg+really1.3.1-1ubuntu3 \
+                                                  libc6-i386=2.43-2ubuntu2 \
+                                                  libtool=2.5.4-9 \
+                                                  software-properties-common=0.120 \
+                                                  unzip=6.0-29ubuntu1 \
+                                                  wget=1.25.0-2ubuntu4 && \
     rm -rf /var/lib/apt/lists/*
 
 
