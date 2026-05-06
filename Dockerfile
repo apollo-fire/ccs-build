@@ -19,7 +19,9 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
                                                   curl=8.18.0-1ubuntu2.1 \
                                                   git=1:2.53.0-1ubuntu1 \
                                                   lib32gcc-s1=16-20260322-1ubuntu1 \
+                                                  lib32ncurses6=6.6+20251231-1 \
                                                   lib32stdc++6=16-20260322-1ubuntu1 \
+                                                  lib32tinfo6=6.6+20251231-1 \
                                                   lib32z1=1:1.3.dfsg+really1.3.1-1ubuntu3 \
                                                   libc6-i386=2.43-2ubuntu2 \
                                                   libtool=2.5.4-9 \
