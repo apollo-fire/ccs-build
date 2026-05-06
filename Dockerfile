@@ -9,6 +9,7 @@ FROM ubuntu:26.04 AS install-ccs
 #################################
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
     sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list.d/ubuntu.sources && \
+    dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get --yes upgrade && \
     apt-get install --yes --no-install-recommends apt-utils=3.2.0 \
@@ -17,6 +18,7 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
                                                   build-essential=12.12ubuntu2 \
                                                   curl=8.18.0-1ubuntu2.1 \
                                                   git=1:2.53.0-1ubuntu1 \
+                                                  lib32z1=1:1.3.dfsg+really1.3.1-1ubuntu3 \
                                                   libc6-i386=2.43-2ubuntu2 \
                                                   libtool=2.5.4-9 \
                                                   software-properties-common=0.120 \
