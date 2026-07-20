@@ -12,6 +12,7 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
     dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get --yes upgrade && \
+<<<<<<< HEAD
     apt-get install --yes --no-install-recommends apt-utils=3.2.0 \
                                                   autoconf=2.72-3.1ubuntu2 \
                                                   bash=5.3-2ubuntu1 \
@@ -28,6 +29,19 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime && \
                                                   software-properties-common=0.120 \
                                                   unzip=6.0-29ubuntu1 \
                                                   wget=1.25.0-2ubuntu4 && \
+=======
+    apt-get install --yes --no-install-recommends apt-utils=2.8.3 \
+                                                  autoconf=2.71-3 \
+                                                  bash=5.2.21-2ubuntu4 \
+                                                  build-essential=12.10ubuntu1 \
+                                                  curl=8.5.0-2ubuntu10.11 \
+                                                  git=1:2.43.0-1ubuntu7.3 \
+                                                  libc6-i386=2.39-0ubuntu8.7 \
+                                                  libtool=2.4.7-7build1 \
+                                                  software-properties-common=0.99.49.4 \
+                                                  unzip=6.0-28ubuntu4.1 \
+                                                  wget=1.21.4-1ubuntu4.3 && \
+>>>>>>> origin/main
     rm -rf /var/lib/apt/lists/*
 
 
