@@ -45,7 +45,8 @@ RUN curl -L ${INSTALLER_URL} --output /root/Downloads/${INSTALLER_TAR} --silent 
     tar xf /root/Downloads/${INSTALLER_TAR} --directory /root/Downloads/ && \
     chmod +x /root/Downloads/${INSTALLER_PATH} && \
     /root/Downloads/${INSTALLER_PATH} --mode unattended --enable-components PF_MSP430 --prefix /opt/ti && \
-    mkdir -p /home/build/workspace
+    mkdir -p /home/build/workspace && \
+    rm -rf /root/Downloads/*
 
 
 FROM ghcr.io/apollo-fire/ccs-base:v11.0.0 AS install-specific-cgt
@@ -61,6 +62,7 @@ ENV TI_CGT_INSTALLER=ti_cgt_msp430_installer.bin
 RUN curl -L ${TI_CGT_INSTALLER_URL} --output /root/Downloads/${TI_CGT_INSTALLER} --silent && \
     chmod +x /root/Downloads/${TI_CGT_INSTALLER} && \
     /root/Downloads/${TI_CGT_INSTALLER} --prefix /opt/ti/ccs/tools/compiler --unattendedmodeui minimal && \
+    rm -rf /root/Downloads/${TI_CGT_INSTALLER} && \
     /opt/ti/ccs/eclipse/eclipse -noSplash -data /home/build/workspace -application com.ti.common.core.initialize -ccs.productDiscoveryPath "/opt/ti/" -ccs.toolDiscoveryPath "/opt/ti/ccs/tools/compiler" && \
     git config --system --add safe.directory "*"
 
