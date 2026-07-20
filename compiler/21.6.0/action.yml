@@ -16,7 +16,7 @@ inputs:
     default: "Debug"
 runs:
   using: "docker"
-  image: "docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v2.0.0"
+  image: "docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v2.1.0" # x-release-please-version
   args:
     - ${{ inputs.project-path }}
     - ${{ inputs.project-name }}
