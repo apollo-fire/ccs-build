@@ -5,6 +5,7 @@
       "release-type": "simple",
       "extra-files": [
         "action.yml",
+        "compiler/15.12.6/action.yml",
         "compiler/18.1.1/action.yml",
         "compiler/18.1.3/action.yml",
         "compiler/20.2.5/action.yml",

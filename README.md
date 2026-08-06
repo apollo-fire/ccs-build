@@ -33,6 +33,7 @@ By default uses version 21.6.0 of the MSP430 code generation tools
 
 ### Available MSP430 Compilers
 
+- 15.12.6
 - 18.1.1
 - 18.1.3
 - 20.2.5

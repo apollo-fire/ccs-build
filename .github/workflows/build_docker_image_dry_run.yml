@@ -58,6 +58,9 @@ jobs:
       fail-fast: false
       matrix:
         cgt-versions:
+          - prefix: 15.12.6
+            version-number: 15.12.6.LTS
+            installer-url: 15.12.6.LTS/ti_cgt_msp430_15.12.6.LTS_linux_installer_x86.bin
           - prefix: 18.1.1
             version-number: 18.1.1.LTS
             installer-url: 18.1.1.LTS/ti_cgt_msp430_18.1.1.LTS_linux_installer_x86.bin
