@@ -2,7 +2,7 @@
 #GitHub actions require that the docker image use the root user
 #https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions#user
 
-FROM ubuntu:24.04 AS install-ccs
+FROM ubuntu:25.10 AS install-ccs
 
 #################################
 ### Install Required Packages ###
