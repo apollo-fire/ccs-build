@@ -1,5 +1,5 @@
 ---
-name: "Code Composer Studio Project Builder - CGT v21.6.0"
+name: "Code Composer Studio Project Builder - CGT v20.2.5"
 description: "GitHub action to build a Code Composer Studio Project"
 author: "Grahame White"
 inputs:
@@ -16,7 +16,7 @@ inputs:
     default: "Debug"
 runs:
   using: "docker"
-  image: "docker://ghcr.io/apollo-fire/ccs-build:21.6.0-v2.1.1" # x-release-please-version
+  image: "docker://ghcr.io/apollo-fire/ccs-build:20.2.5-v2.1.1" # x-release-please-version
   args:
     - ${{ inputs.project-path }}
     - ${{ inputs.project-name }}
